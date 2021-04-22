@@ -1,0 +1,7 @@
+.navbar {
+  padding: 5px 20px ;
+}
+
+.ml-auto, .mx-auto {
+  margin-left: auto!important;
+}
