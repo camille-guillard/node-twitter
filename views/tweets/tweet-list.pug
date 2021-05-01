@@ -1,11 +1,6 @@
-extends ../layout.pug
-
-block content
-  div(class="d-flex flex-row content mx-auto")
-    div(class="profile-container")
-      include ../includes/profile
-    div(class="flex-fill d-flex flex-column")
-      if tweets
-        each tweet in tweets
-          div(class="card tweet-element")
-            div(class="card-body")= tweet.content
+if tweets
+  each tweet in tweets
+    div(class="card tweet-element")
+      div(class="card-body")
+        a(class="card-text" href="/tweets/edit/" + tweet._id )= tweet.content
+        img(src="/img/delete.png" alt="delete" class="delete-tweet" style="height: 35px;" tweetid=tweet.id)

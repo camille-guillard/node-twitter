@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "env-cmd -f ./env/.env.dev nodemon app.js",
+    "start:prod": "env-cmd -f ./env/.env.prod nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,8 @@
   },
   "homepage": "https://github.com/camille-guillard/node-twitter#readme",
   "dependencies": {
+    "env-cmd": "^10.1.0",
+    "errorhandler": "^1.5.1",
     "express": "^4.17.1",
     "mongoose": "^5.12.5",
     "morgan": "^1.10.0",

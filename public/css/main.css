@@ -34,3 +34,12 @@
 .b1 {
   border: 1px solid green;
 }
+
+.delete-tweet {
+  cursor: pointer;
+  float: right;  
+}
+
+.loading {
+  opacity: 0.5;
+}
