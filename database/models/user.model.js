@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 const userSchema = schema({
-  username: { type: String, require: true },
+  username: { type: String, required: true, unique: true },
   local: {
-    email: { type: String, require: true },
-    password: { type: String, require: true }
-  }
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+  },
+  avatar: { type: String, default: '/img/default-profile.jpg' }
 });
 
 userSchema.statics.hashPassword = (password) => {

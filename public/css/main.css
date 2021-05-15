@@ -1,5 +1,6 @@
 .navbar {
   padding: 5px 20px ;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .ml-auto, .mx-auto {
@@ -14,25 +15,38 @@
 .profile-container {
   width: 30%;
   max-width: 300px;
+  margin-right: 20px;
+  border-radius: 10px;
+  color: #657786;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+#image-profile {
+  border-radius: 50px;
+  cursor: pointer;
 }
 
 .tweet-element {
   border-radius: 10px;
   font-size: 14px;
   margin: 5px 0px;
+  border: 0px;
+  border-top: 1px solid #ddd;
 }
 
+.tweet-element:first-child {
+  border-top: 0px!important;
+}
+
+.img-fluid {
+  max-height: 100px;
+}
 
 .btn-tweet {
   border-radius: 30px;
-}
-
-.b {
-  border: 1px solid red;
-}
-
-.b1 {
-  border: 1px solid green;
 }
 
 .delete-tweet {
