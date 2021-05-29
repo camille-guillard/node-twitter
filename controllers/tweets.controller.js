@@ -1,9 +1,16 @@
-const { getTweets, getTweet, createTweet, updateTweet, deleteTweet} = require('../queries/tweets.queries');
+const { getTweets, getTweet, createTweet, updateTweet, deleteTweet, getCurrentUserTweetsWithFollowing } = require('../queries/tweets.queries');
 
 exports.tweetList = async (req, res, next) => {
   try {
-    const tweets = await getTweets();
-    res.render('tweets/tweet', { tweets, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
+    const tweets = await getCurrentUserTweetsWithFollowing(req.user);
+    res.render('tweets/tweet', 
+    { 
+      tweets,
+      isAuthenticated: req.isAuthenticated(),
+      currentUser: req.user,
+      user: req.user,
+      editable: true
+    });
   } catch(e) {
     next(e);
   }
@@ -51,8 +58,8 @@ exports.tweetDelete = async (req, res, next) => {
   const tweetId = req.params.tweetId;
   try {
     await deleteTweet(tweetId);
-    const tweets = await getTweets();
-    res.render('tweets/tweet-list', { tweets })
+    const tweets = await getCurrentUserTweetsWithFollowing(req.user);
+    res.render('tweets/tweet-list', { tweets, currentUser: req.user, editable: true })
   } catch(e) {
     next(e);
   }

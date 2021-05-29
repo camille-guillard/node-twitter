@@ -2,17 +2,23 @@ script(src="/js/profile/profile.js")
 div(class="profile-container bg-white d-flex flex-column")
   form(id="profile-form" class="d-flex p-2 flex-row justify-content-center align-items-center" action="/users/update/image" method="post" enctype="multipart/form-data")
     input(id="input-avatar" class="d-none" type="file" name="avatar")
-    img(id="image-profile" src=currentUser.avatar class="img-fluid")
+    img(id="image-profile" src=user.avatar class="img-fluid")
   div(class="d-flex flex-row justify-content-center align-items-center my-3")
-    p= `${ currentUser.username } (${ currentUser.local.email })`
-  div(class="d-flex flex-row justify-content-center align-items-center text-center")
+    p(class="username-profile")= `${ user.username.toUpperCase() }`
+  if currentUser._id.toString() !== user._id.toString()
+      div(class="d-flex flex-row justify-content-center align-items-center")
+        if currentUser.following.map( objId => objId.toString() ).includes(user._id.toString())
+          a(href="/users/unfollow/"+user._id class="btn btn-primary btn-unfollow") unfollow
+        else
+          a(href="/users/follow/"+user._id class="btn btn-outline-primary btn-follow") follow
+  div(class="d-flex flex-row justify-content-center align-items-center text-center my-3")
     div(class="flex-fill")
       p
         strong Tweets
         br
-        span(class="text-primary")= tweets.length
+        a(href="/users/"+user.username class="text-primary")= tweets && tweets.filter(t => t.author._id.toString() === user._id.toString()).length
     div(class="flex-fill")
       p
         strong Following
         br
-        span(class="text-primary") -
+        span(class="text-primary")= user.following.length
